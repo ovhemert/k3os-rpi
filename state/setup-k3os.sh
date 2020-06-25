@@ -19,3 +19,12 @@ EOF
   resize2fs /dev/mmcblk0p2
   echo "Done"
 fi
+
+# mount efi boot partition
+
+mkdir -p /media/mmcblk0p1
+mount /dev/mmcblk0p1 /media/mmcblk0p1
+
+# replace configuration with our own
+
+cp /media/mmcblk0p1/config.yaml /var/lib/rancher/k3os/config.yaml

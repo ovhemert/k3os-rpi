@@ -1,0 +1,5 @@
+# put your own k3os configuration overrides here
+# more info: https://github.com/rancher/k3os#configuration-reference
+
+k3os:
+    password: test

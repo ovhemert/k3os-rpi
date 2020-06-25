@@ -61,6 +61,10 @@ curl -o ${TEMP_FILE} -fL ${RPI3_UEFI_URL}
 unzip ${TEMP_FILE} -d ${TARGET}/boot/efi
 rm -f $TEMP_FILE
 
+# Customize UEFI
+
+cp ${SRC_PATH}/boot/* ${TARGET}/boot/efi
+
 # Unpack and install GRUB
 
 TEMP_GRUB=${BUILD_CACHE_PATH}/grub && mkdir -p ${TEMP_GRUB}
