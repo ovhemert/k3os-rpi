@@ -63,7 +63,9 @@ curl -sfL ${K3OS_ROOTFS_URL} | tar -zxvf - --strip-components=1 -C ${TARGET}
 
 # Customize k3os
 
-cp ${SRC_PATH}/state/* ${TARGET}/k3os/system/
+# cp ${SRC_PATH}/state/* ${TARGET}/k3os/system/
+mv ${TARGET}/k3os/system/config.yaml ${TARGET}/k3os/system/_config.yaml
+ln -s /dev/mmcblk0p1/config.yaml ${TARGET}/k3os/system/config.yaml
 
 # Unpack Rpi UEFI to ${TARGET}/boot/efi
 
