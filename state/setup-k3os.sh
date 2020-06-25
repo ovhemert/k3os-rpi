@@ -8,7 +8,7 @@ PART_NEWEND=$(($(cat /sys/block/mmcblk0/size)-8))
 
 if [ "$PART_NEWEND" -gt "$PART_END" ]
 then
-  echo "Resizing partition '/dev/mmcblk0p2' on '/dev/mmcblk0'."
+  echo "Resizing partition '/dev/mmcblk0p2' on '/dev/mmcblk0'"
   parted /dev/mmcblk0 ---pretend-input-tty <<EOF
 resizepart
 2
@@ -19,3 +19,14 @@ EOF
   resize2fs /dev/mmcblk0p2
   echo "Done"
 fi
+
+# mount efi boot partition
+
+echo "Mounting UEFI partition"
+mkdir -p /media/mmcblk0p1
+mount /dev/mmcblk0p1 /media/mmcblk0p1
+
+# replace configuration with our own
+
+echo "Replacing config.yaml"
+cp /media/mmcblk0p1/config.yaml /var/lib/rancher/k3os/config.yaml
