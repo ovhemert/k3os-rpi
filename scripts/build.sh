@@ -1,13 +1,23 @@
 #!/bin/bash
 
+case "$1" in
+        rpi3)
+            UEFI_URL=https://github.com/pftf/RPi3/releases/download/v1.27/RPi3_UEFI_Firmware_v1.27.zip
+            ;;
+        rpi4)
+            UEFI_URL=https://github.com/pftf/RPi4/releases/download/v1.13/RPi4_UEFI_Firmware_v1.13.zip
+            ;;
+        *)
+            echo $"Usage: $0 {rpi3|rpi4}"
+            exit 1
+esac
+
 SRC_PATH=$PWD
 BUILD_PATH=${SRC_PATH}/build
 IMAGE_FILE=rpi.img
 SD_CARD_SIZE=1024
 
 K3OS_ROOTFS_URL=https://github.com/rancher/k3os/releases/download/v0.10.3/k3os-rootfs-arm64.tar.gz
-RPI3_UEFI_URL=https://github.com/pftf/RPi3/releases/download/v1.27/RPi3_UEFI_Firmware_v1.27.zip
-RPI4_UEFI_URL=https://github.com/pftf/RPi4/releases/download/v1.13/RPi4_UEFI_Firmware_v1.13.zip
 GRUB_ARM64_DEB_URL=http://ftp.debian.org/debian/pool/main/g/grub2/grub-efi-arm64-bin_2.04-8_arm64.deb
 GRUB_ARM64_SIGNED_DEB_URL=http://ftp.debian.org/debian/pool/main/g/grub-efi-arm64-signed/grub-efi-arm64-signed_1+2.04+8_arm64.deb
 
@@ -57,7 +67,7 @@ cp ${SRC_PATH}/state/* ${TARGET}/k3os/system/
 # Unpack Rpi UEFI to ${TARGET}/boot/efi
 
 TEMP_FILE=${BUILD_CACHE_PATH}/$(mktemp rpiuefi.XXXXXXXX.zip)
-curl -o ${TEMP_FILE} -fL ${RPI3_UEFI_URL}
+curl -o ${TEMP_FILE} -fL ${UEFI_URL}
 unzip ${TEMP_FILE} -d ${TARGET}/boot/efi
 rm -f $TEMP_FILE
 
