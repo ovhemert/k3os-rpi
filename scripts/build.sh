@@ -12,9 +12,10 @@ case "$1" in
             exit 1
 esac
 
+PI_VERSION=$1
 SRC_PATH=$PWD
 BUILD_PATH=${SRC_PATH}/build
-IMAGE_FILE=rpi.img
+IMAGE_FILE=k3os-${PI_VERSION}.img
 SD_CARD_SIZE=1024
 
 K3OS_ROOTFS_URL=https://github.com/rancher/k3os/releases/download/v0.10.3/k3os-rootfs-arm64.tar.gz

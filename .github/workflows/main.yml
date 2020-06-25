@@ -17,7 +17,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: k3os-rpi3.img.gz
-        path: build/image/rpi.img.gz
+        path: build/image/k3os-rpi3.img.gz
   build-rpi4:
     runs-on: ubuntu-latest
     steps:
@@ -28,4 +28,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: k3os-rpi4.img.gz
-        path: build/image/rpi.img.gz
+        path: build/image/k3os-rpi4.img.gz
