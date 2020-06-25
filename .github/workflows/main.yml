@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the RPI image file
+      run: sudo ./build.sh
+    - name: Upload image file artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: rpi-image
+        path: build/image/rpi.img.gz
