@@ -2,4 +2,4 @@
 # more info: https://github.com/rancher/k3os#configuration-reference
 
 k3os:
-    password: rancher
+    password: test
