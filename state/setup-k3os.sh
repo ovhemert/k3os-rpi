@@ -29,6 +29,4 @@ mount /dev/mmcblk0p1 /media/mmcblk0p1
 # replace configuration with our own
 
 # echo "Replacing config.yaml"
-# cp /media/mmcblk0p1/config.yaml /var/lib/rancher/k3os/config.yaml
-echo "Linking config.yaml"
-ln -s /media/mmcblk0p1/config.yaml /var/lib/rancher/k3os/config.yaml
+cp /media/mmcblk0p1/config.yaml /var/lib/rancher/k3os/config.yaml

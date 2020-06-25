@@ -1,4 +1,5 @@
-boot_cmd:
+init_cmd:
 - "/k3os/system/setup-k3os.sh"
 k3os:
     password: rancher
+
