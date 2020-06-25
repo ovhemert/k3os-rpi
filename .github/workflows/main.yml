@@ -1,4 +1,4 @@
-name: CI
+name: Build Images
 
 on:
   push:
@@ -7,14 +7,25 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build-rpi3:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Build the RPI image file
-      run: sudo ./build.sh
+      run: sudo ./scripts/build.sh rpi3
     - name: Upload image file artifact
       uses: actions/upload-artifact@v1
       with:
-        name: rpi-image
-        path: build/image/rpi.img.gz
+        name: k3os-rpi3.img.gz
+        path: build/image/k3os-rpi3.img.gz
+  build-rpi4:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the RPI image file
+      run: sudo ./scripts/build.sh rpi4
+    - name: Upload image file artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: k3os-rpi4.img.gz
+        path: build/image/k3os-rpi4.img.gz
