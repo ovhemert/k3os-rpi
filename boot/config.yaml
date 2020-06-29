@@ -11,7 +11,7 @@ write_files:
   owner: root:root
   path: /etc/fstab
   permissions: '0644'
-init_cmd:
+boot_cmd:
 - "mount -a"
 k3os:
     password: test

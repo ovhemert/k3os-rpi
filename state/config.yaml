@@ -8,7 +8,7 @@ write_files:
   owner: root:root
   path: /etc/fstab
   permissions: '0644'
-init_cmd:
+boot_cmd:
 - "/k3os/system/setup-k3os.sh"
 - "mount -a"
 k3os:
