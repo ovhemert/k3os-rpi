@@ -20,17 +20,19 @@ EOF
   echo "Done"
 fi
 
+# Linking config.yaml to boot partition
+
+echo "Linking config.yaml"
+ln -s /var/lib/rancher/k3os/config.yaml /media/mmcblk0p1/config.yaml
+
+
 # mount efi boot partition
 
-echo "Mounting UEFI partition"
-mkdir -p /media/mmcblk0p1
-mount /dev/mmcblk0p1 /media/mmcblk0p1
+# echo "Mounting UEFI partition"
+# mkdir -p /media/mmcblk0p1
+# mount /dev/mmcblk0p1 /media/mmcblk0p1
 
 # replace configuration with our own
 
-echo "Replacing config.yaml"
-rm -rf /k3os/system/config.yaml
-ln -s /media/mmcblk0p1/config.yaml /k3os/system/config.yaml
-
-# cp /media/mmcblk0p1/config.yaml /k3os/system/config.yaml
-# mv /media/mmcblk0p1/config.yaml /media/mmcblk0p1/config-applied.yaml
+# echo "Replacing config.yaml"
+# cp /media/mmcblk0p1/config.yaml /var/config.yaml
