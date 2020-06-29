@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# resize K3OS_STATE partition to maximum
+# resize K3OS_STATE partition to maximum available space
 
 PART_START=$(cat /sys/block/mmcblk0/mmcblk0p2/start)
 PART_END=$(($PART_START+$(cat /sys/block/mmcblk0/mmcblk0p2/size)))
@@ -20,6 +20,16 @@ EOF
   echo "Done"
 fi
 
+# create mount point for efi partition
+
+mkdir -p /media/mmcblk0p1
+
+# link configuration file from efi partition
+
+ln -s /media/mmcblk0p1/config.yaml /var/lib/rancher/k3os/config.yaml
+
+
+
 # mount efi boot partition
 
 # echo "Mounting UEFI partition"
@@ -36,3 +46,4 @@ fi
 
 # echo "Replacing config.yaml"
 # cp /media/mmcblk0p1/config.yaml /var/config.yaml
+

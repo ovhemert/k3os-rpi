@@ -9,9 +9,8 @@ write_files:
   path: /etc/fstab
   permissions: '0644'
 init_cmd:
-- "/k3os/system/resize-state-part.sh"
+- "/k3os/system/setup-k3os.sh"
 - "mount -a"
-- "ln -s /media/mmcblk0p1/config.yaml /var/lib/rancher/k3os/config.yaml"
 k3os:
     password: rancher
 
