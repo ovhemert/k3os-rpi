@@ -26,7 +26,7 @@ mkdir -p /media/mmcblk0p1
 
 # link configuration file from efi partition
 
-ln -s /media/mmcblk0p1/config.yaml /var/lib/rancher/k3os/config.yaml
+# ln -s /media/mmcblk0p1/config.yaml /var/lib/rancher/k3os/config.yaml
 
 
 
