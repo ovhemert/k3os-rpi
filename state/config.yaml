@@ -4,11 +4,14 @@ write_files:
     /dev/cdrom          /media/cdrom      iso9660         noauto,ro       0 0
     /dev/usbdisk        /media/usb        vfat            noauto,ro       0 0
     /dev/mmcblk0p1      /media/mmcblk0p1  vfat            rw              0 0
+
   owner: root:root
   path: /etc/fstab
   permissions: '0644'
-boot_cmd:
-- "/k3os/system/setup-k3os.sh"
+init_cmd:
+- "/k3os/system/resize-state-part.sh"
+- "mount -a"
+- "ln -s /media/mmcblk0p1/config.yaml /var/lib/rancher/k3os/config.yaml"
 k3os:
     password: rancher
 

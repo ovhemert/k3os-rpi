@@ -19,20 +19,3 @@ EOF
   resize2fs /dev/mmcblk0p2
   echo "Done"
 fi
-
-# mount efi boot partition
-
-# echo "Mounting UEFI partition"
-# mkdir -p /media/mmcblk0p1
-# mount /dev/mmcblk0p1 /media/mmcblk0p1
-
-# Linking config.yaml to boot partition
-
-# echo "Linking config.yaml"
-# ln -s /media/mmcblk0p1/config.yaml /var/lib/rancher/k3os/config.yaml
-
-
-# replace configuration with our own
-
-# echo "Replacing config.yaml"
-# cp /media/mmcblk0p1/config.yaml /var/config.yaml
