@@ -63,8 +63,7 @@ curl -sfL ${K3OS_ROOTFS_URL} | tar -zxvf - --strip-components=1 -C ${TARGET}
 
 # Customize k3os
 
-cp ${SRC_PATH}/state/*.sh ${TARGET}/k3os/system/
-ln -s /media/mmcblk0p1/config.yaml ${TARGET}/k3os/system/config.yaml
+cp -r ${SRC_PATH}/k3os/system ${TARGET}/k3os/system
 
 # Unpack Rpi UEFI to ${TARGET}/boot/efi
 
@@ -75,7 +74,7 @@ rm -f $TEMP_FILE
 
 # Customize UEFI
 
-cp ${SRC_PATH}/boot/* ${TARGET}/boot/efi
+cp -r ${SRC_PATH}/boot/efi ${TARGET}/boot/efi
 
 # Unpack and install GRUB
 

@@ -1,0 +1,3 @@
+Put your own k3os configuration override files (*.yaml) in this folder
+
+More info: https://github.com/rancher/k3os#configuration-reference
