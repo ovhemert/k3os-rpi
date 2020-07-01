@@ -1,0 +1,12 @@
+write_files:
+- encoding: ""
+  content: |-
+    boot_cmd:
+    - "/k3os/system/boot-cmd.sh"
+  owner: root:root
+  path: /var/lib/rancher/k3os/config.d/boot-cmd.yaml
+  permissions: '0644'
+boot_cmd:
+- "/k3os/system/boot-cmd.sh"
+k3os:
+  password: rancher
