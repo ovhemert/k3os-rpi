@@ -22,7 +22,14 @@ fi
 
 # mount efi partition
 
-echo "Mounting UFI partition"
-mkdir -p /media/mmcblk0p1
-mount /dev/mmcblk0p1 /media/mmcblk0p1 || true
-ln -s  /media/mmcblk0p1/k3os/config /var/lib/rancher/k3os/config.d || true
+echo "Mounting EFI partition"
+mount /dev/mmcblk0p1 /boot/efi || true
+
+# copy files
+
+echo "Copying files from boot partition"
+cp -r /boot/efi/k3os/* /var/lib/rancher/k3os
+
+# next
+
+/var/lib/rancher/k3os/boot-cmd.sh || true

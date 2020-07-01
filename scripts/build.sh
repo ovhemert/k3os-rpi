@@ -61,38 +61,34 @@ mount ${PART_ESP} ${TARGET}/boot/efi
 
 curl -sfL ${K3OS_ROOTFS_URL} | tar -zxvf - --strip-components=1 -C ${TARGET}
 
-# Customize k3os
-
-cp -r ${SRC_PATH}/k3os/system ${TARGET}/k3os/system
-
 # Unpack Rpi UEFI to ${TARGET}/boot/efi
 
-TEMP_FILE=${BUILD_CACHE_PATH}/$(mktemp rpiuefi.XXXXXXXX.zip)
+TEMP_FILE=${BUILD_CACHE_PATH}/rpiuefi.zip
 curl -o ${TEMP_FILE} -fL ${UEFI_URL}
 unzip ${TEMP_FILE} -d ${TARGET}/boot/efi
-rm -f $TEMP_FILE
+rm -rf $TEMP_FILE
 
-# Customize UEFI
+# Customize
 
-cp -r ${SRC_PATH}/boot/efi ${TARGET}/boot/efi
+cp -r ${SRC_PATH}/overlay/* ${TARGET}
 
 # Unpack and install GRUB
 
 TEMP_GRUB=${BUILD_CACHE_PATH}/grub && mkdir -p ${TEMP_GRUB}
 
-TEMP_FILE=${BUILD_CACHE_PATH}/$(mktemp grubarm64.XXXXXXXX.deb)
+TEMP_FILE=${BUILD_CACHE_PATH}/grubarm64.deb
 curl -o ${TEMP_FILE} -fL ${GRUB_ARM64_DEB_URL}
 cd ${BUILD_CACHE_PATH} && ar x ${TEMP_FILE} data.tar.xz && cd ${SRC_PATH}
 tar xvf ${BUILD_CACHE_PATH}/data.tar.xz --strip-components=1 -C ${TEMP_GRUB}
-rm -f ${BUILD_CACHE_PATH}/data.tar.xz
-rm -f ${TEMP_FILE}
+rm -rf ${BUILD_CACHE_PATH}/data.tar.xz
+rm -rf ${TEMP_FILE}
 
-TEMP_FILE=${BUILD_CACHE_PATH}/$(mktemp grubarm64-signed.XXXXXXXX.deb)
+TEMP_FILE=${BUILD_CACHE_PATH}/grubarm64-signed.deb
 curl -o ${TEMP_FILE} -fL ${GRUB_ARM64_SIGNED_DEB_URL}
 cd ${BUILD_CACHE_PATH} && ar x ${TEMP_FILE} data.tar.xz && cd ${SRC_PATH}
 tar xvf ${BUILD_CACHE_PATH}/data.tar.xz --strip-components=1 -C ${TEMP_GRUB}
-rm -f ${BUILD_CACHE_PATH}/data.tar.xz
-rm -f ${TEMP_FILE}
+rm -rf ${BUILD_CACHE_PATH}/data.tar.xz
+rm -rf ${TEMP_FILE}
 
 cat > ${TARGET}/boot/grub/grub.cfg << EOF
 set default=0
