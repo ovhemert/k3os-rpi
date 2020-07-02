@@ -24,6 +24,7 @@ GRUB_ARM64_SIGNED_DEB_URL=http://ftp.debian.org/debian/pool/main/g/grub-efi-arm6
 
 # setup build location
 
+rm -rf ${BUILD_PATH}
 BUILD_CACHE_PATH=${BUILD_PATH}/cache && mkdir -p ${BUILD_CACHE_PATH}
 BUILD_IMAGE_PATH=${BUILD_PATH}/image && mkdir -p ${BUILD_IMAGE_PATH}
 BUILD_MOUNT_PATH=${BUILD_PATH}/mount && mkdir -p ${BUILD_MOUNT_PATH}

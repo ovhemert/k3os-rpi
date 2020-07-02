@@ -28,8 +28,8 @@ mount /dev/mmcblk0p1 /boot/efi || true
 # copy files
 
 echo "Copying files from boot partition"
-cp -r /boot/efi/k3os/* /var/lib/rancher/k3os
+cp -r /boot/efi/overlay/* /var/lib/rancher
 
 # next
 
-/var/lib/rancher/k3os/boot-cmd.sh || true
+/var/lib/rancher/k3os/boot_cmd.sh || true
