@@ -18,7 +18,7 @@ BUILD_PATH=${SRC_PATH}/build
 IMAGE_FILE=k3os-${PI_VERSION}.img
 SD_CARD_SIZE=1024
 
-K3OS_ROOTFS_URL=https://github.com/rancher/k3os/releases/download/v0.10.3/k3os-rootfs-arm64.tar.gz
+K3OS_ROOTFS_URL=https://github.com/rancher/k3os/releases/download/v0.10.2/k3os-rootfs-arm64.tar.gz
 GRUB_ARM64_DEB_URL=http://ftp.debian.org/debian/pool/main/g/grub2/grub-efi-arm64-bin_2.04-8_arm64.deb
 GRUB_ARM64_SIGNED_DEB_URL=http://ftp.debian.org/debian/pool/main/g/grub-efi-arm64-signed/grub-efi-arm64-signed_1+2.04+8_arm64.deb
 
@@ -93,7 +93,7 @@ rm -rf ${TEMP_FILE}
 
 cat > ${TARGET}/boot/grub/grub.cfg << EOF
 set default=0
-set timeout=10
+set timeout=3
 set gfxmode=auto
 set gfxpayload=keep
 insmod all_video
