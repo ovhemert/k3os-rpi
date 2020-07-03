@@ -19,17 +19,3 @@ EOF
   resize2fs /dev/mmcblk0p2
   echo "Done"
 fi
-
-# mount efi partition
-
-echo "Mounting EFI partition"
-mount /dev/mmcblk0p1 /boot/efi || true
-
-# copy files
-
-echo "Copying files from boot partition"
-cp -r /boot/efi/overlay/* /var/lib/rancher
-
-# next
-
-/var/lib/rancher/k3os/boot_cmd.sh || true

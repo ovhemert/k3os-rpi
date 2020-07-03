@@ -1,20 +1,7 @@
-write_files:
-- encoding: ""
-  content: |-
-    boot_cmd:
-    - "/k3os/system/boot_cmd.sh"
-    init_cmd:
-    - "/k3os/system/init_cmd.sh"
-    run_cmd:
-    - "/k3os/system/run_cmd.sh"
-  owner: root:root
-  path: /var/lib/rancher/k3os/config.d/commands.yaml
-  permissions: '0644'
 boot_cmd:
-- "/k3os/system/boot_cmd.sh"
-init_cmd:
-- "/k3os/system/init_cmd.sh"
+- "mount /dev/mmcblk0p1 /boot/efi || true"
+- "/boot/efi/k3os/boot_cmd.sh"
 run_cmd:
-- "/k3os/system/run_cmd.sh"
+- "/boot/efi/k3os/run_cmd.sh"
 k3os:
   password: rancher
