@@ -1,0 +1,21 @@
+name: Backup to S3
+on:
+  push:
+    branches:
+      - master
+      - backup
+jobs:
+  s3Backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: S3 Backup
+        uses: peter-evans/s3-backup@v1
+        env:
+          ACCESS_KEY_ID: ${{ secrets.BACKUP_KEY }}
+          SECRET_ACCESS_KEY: ${{ secrets.BACKUP_SECRET }}
+          STORAGE_SERVICE_URL: ${{ secrets.BACKUP_URL }}
+          MIRROR_TARGET: ${{ secrets.BACKUP_BUCKET }}/${{ GITHUB_REPOSITORY }}
+        with:
+          args: --overwrite --remove
+  
