@@ -15,7 +15,8 @@ jobs:
           ACCESS_KEY_ID: ${{ secrets.BACKUP_KEY }}
           SECRET_ACCESS_KEY: ${{ secrets.BACKUP_SECRET }}
           STORAGE_SERVICE_URL: ${{ secrets.BACKUP_URL }}
-          MIRROR_TARGET: ${{ secrets.BACKUP_BUCKET }}/${{ env.GITHUB_REPOSITORY }}
+          MIRROR_TARGET: ${{ secrets.BACKUP_BUCKET }}
+          MIRROR_SOURCE: ${{ env.GITHUB_REPOSITORY }}
         with:
           args: --overwrite --remove
   
