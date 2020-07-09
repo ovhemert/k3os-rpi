@@ -1,22 +1,18 @@
-name: Backup repo to S3
+name: Sync B2 Bucket
 on:
   push:
     branches:
       - master
       - backup
 jobs:
-  s3Backup:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: S3 Backup
-        uses: peter-evans/s3-backup@v1
-        env:
-          ACCESS_KEY_ID: ${{ secrets.BACKUP_KEY }}
-          SECRET_ACCESS_KEY: ${{ secrets.BACKUP_SECRET }}
-          STORAGE_SERVICE_URL: ${{ secrets.BACKUP_URL }}
-          MIRROR_TARGET: ${{ secrets.BACKUP_BUCKET }}
-          MIRROR_SOURCE: ${{ env.GITHUB_REPOSITORY }}
-        with:
-          args: --overwrite --remove
+    - uses: actions/checkout@master
+    - uses: jakejarvis/backblaze-b2-action@master
+      env:
+        SOURCE_DIR: ${{ env.GITHUB_WORKSPACE }}
+        B2_BUCKET: ${{ secrets.B2_BUCKET }}
+        B2_APPKEY_ID: ${{ secrets.B2_APPKEY_ID }}
+        B2_APPKEY: ${{ secrets.B2_APPKEY }}
   
