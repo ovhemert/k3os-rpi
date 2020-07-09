@@ -1,4 +1,4 @@
-name: Backup to S3
+name: Backup repo to S3
 on:
   push:
     branches:
